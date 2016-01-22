@@ -5,41 +5,26 @@ let base16colorspace=256
 set ffs=unix
 set rtp+=~/.fzf
 
-"--- Have jj escape insert mode ---"
+"--- Have fd escape insert mode ---"
 inoremap fd <Esc>
 
-"---- Color in terminal ----"
-if has("unix") || has("mac")
-    if has('vim_starting')
-        set runtimepath+=~/.vim/bundle/neobundle.vim/
-    endif
-
-    call neobundle#begin(expand('~/.vim/bundle/'))
-else
-    if has('vim_starting')
-        set runtimepath+=~/vimfiles/bundle/neobundle.vim/
-    endif
-
-    call neobundle#begin(expand('~/vimfiles/bundle/'))
-endif
-
 "------- Packages to use ------"
-NeoBundleFetch 'Shougo/neobundle.vim'
+call plug#begin('~/.vim/bundle')
 
-NeoBundle 'vim-scripts/delimitMate.vim.git'
-NeoBundle 'scrooloose/nerdcommenter.git'
-NeoBundle 'tpope/vim-surround.git'
-NeoBundle 'mattn/emmet-vim.git'
-NeoBundle 'tpope/vim-fugitive.git'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'ajh17/Spacegray.vim'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'junegunn/fzf.vim'
+Plug 'vim-scripts/delimitMate.vim.git'
+Plug 'scrooloose/nerdcommenter.git'
+Plug 'tpope/vim-surround.git'
+Plug 'mattn/emmet-vim.git'
+Plug 'tpope/vim-fugitive.git'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'bling/vim-airline'
+Plug 'xolox/vim-misc'
+Plug 'ajh17/Spacegray.vim'
+Plug 'sjl/gundo.vim'
+Plug 'junegunn/fzf.vim'
 
-call neobundle#end()
+call plug#end()
 "------- Packages to use ------"
 
 syntax on
@@ -196,6 +181,3 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " --- Making clipboards play nice
 map <leader>fy "+y
 map <leader>fp "+p
-
-" ---- Check for uninstalled bundles
-NeoBundleCheck
