@@ -22,7 +22,7 @@ Plug 'bling/vim-airline'
 Plug 'xolox/vim-misc'
 Plug 'ajh17/Spacegray.vim'
 Plug 'sjl/gundo.vim'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "------- Packages to use ------"
