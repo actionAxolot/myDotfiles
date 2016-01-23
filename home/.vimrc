@@ -11,18 +11,18 @@ inoremap fd <Esc>
 "------- Packages to use ------"
 call plug#begin('~/.vim/bundle')
 
-Plug 'vim-scripts/delimitMate.vim.git'
-Plug 'scrooloose/nerdcommenter.git'
-Plug 'tpope/vim-surround.git'
-Plug 'mattn/emmet-vim.git'
-Plug 'tpope/vim-fugitive.git'
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'bling/vim-airline'
 Plug 'xolox/vim-misc'
 Plug 'ajh17/Spacegray.vim'
 Plug 'sjl/gundo.vim'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
 
 call plug#end()
 "------- Packages to use ------"
