@@ -23,6 +23,7 @@ Plug 'xolox/vim-misc'
 Plug 'ajh17/Spacegray.vim'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/fzf.vim'
+Plug 'mustache/vim-mustache-handlebars'
 
 call plug#end()
 "------- Packages to use ------"
