@@ -21,9 +21,17 @@ Plug 'honza/vim-snippets'
 Plug 'bling/vim-airline'
 Plug 'xolox/vim-misc'
 Plug 'ajh17/Spacegray.vim'
+Plug 'ervandew/supertab'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'pangloss/vim-javascript'
+Plug 'ternjs/tern_for_vim'
+Plug 'tpope/vim-vinegar'
+Plug 'elzr/vim-json'
+Plug 'freitass/todo.txt-vim'
+Plug 'davidhalter/jedi-vim'
+Plug 'scrooloose/nerdtree'
 
 call plug#end()
 "------- Packages to use ------"
@@ -42,7 +50,7 @@ set guioptions-=L
 if has("mac")
     set guifont=Monaco\ Mono\ 10
 elseif has("unix")
-    set guifont=Source\ Code\ Pro\ 10
+    set guifont=Ubuntu\ Mono\ 10
 else
     set guifont=Inconsolata:h11
 endif
@@ -115,49 +123,35 @@ set listchars=tab:▸\ ,eol:¬
 "---Match it configuration---"
 runtime macros/matchit.vim
 
-"---filetype identification---"
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType c setlocal omnifunc=ccomplete#Complete
-
-"---Indentation according to filetype---"
-autocmd FileType ruby set tabstop=2|set shiftwidth=2|set noexpandtab
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
-
 set completeopt=menuone,longest,preview,menu
 
 "---Window operations---"
 set winminheight=0
 nnoremap <leader>wv <C-w>v<C-w>l
 nnoremap <leader>ws <C-w>s<C-w>l
-nnoremap <leader>wh <C-w>h
-nnoremap <leader>wj <C-w>j
-nnoremap <leader>wk <C-w>k
-nnoremap <leader>wl <C-w>l
+nnoremap <C-a>h <C-w>h
+nnoremap <C-a>j <C-w>j
+nnoremap <C-a>k <C-w>k
+nnoremap <C-a>l <C-w>l
 
 "--- buffer nav
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprev<CR>
+nnoremap <C-f> :bnext<CR>
+nnoremap <C-b> :bprev<CR>
 
 "--- Gundo mappings ---"
 map <leader>fg :GundoToggle<CR>
 
 "---- fzf configs ---- "
 " Files, Buffers, BTags, Blines, Ag, Lines :Bcommits, Commits
-nnoremap <silent> <C-t> :Files<CR>
+nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <leader>bf :Buffers<CR>
-nnoremap <silent> <leader>bt :BTags<CR>
+nnoremap <silent> <C-t> :BTags<CR>
 nnoremap <silent> <leader>bl :BLines<CR>
 nnoremap <silent> <leader>pa :Ag<CR>
 nnoremap <silent> <leader>pl :Lines<CR>
 nnoremap <silent> <leader>bc :BCommits<CR>
 nnoremap <silent> <leader>pc :Commits<CR>
 
-imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-imap <C-x><C-l> <plug>(fzf-complete-line)
 
 "---Store Backup files in a central place---"
 set backup
@@ -178,6 +172,21 @@ nmap <leader>vr :tabedit $MYVIMRC<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+
+"--- Relative numbers settings
+set relativenumber
+autocmd FocusLost * :set number
+autocmd FocusGained * :set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+"--- Super tab conf
+let g:SuperTabDefaultCompletionType = "context"
+
+"--- NERDTree stuff
+nnoremap <leader>wf :NERDTreeToggle<CR>
+
 
 " --- Making clipboards play nice
 map <leader>fy "+y
