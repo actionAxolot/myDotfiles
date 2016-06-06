@@ -3,7 +3,6 @@ let base16colorspace=256
 
 "---fucking line endings
 set ffs=unix
-set rtp+=~/.fzf
 
 "--- Have fd escape insert mode ---"
 inoremap fd <Esc>
@@ -23,16 +22,14 @@ Plug 'xolox/vim-misc'
 Plug 'ajh17/Spacegray.vim'
 Plug 'ervandew/supertab'
 Plug 'sjl/gundo.vim'
-Plug 'junegunn/fzf.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'ternjs/tern_for_vim'
-Plug 'tpope/vim-vinegar'
 Plug 'elzr/vim-json'
-Plug 'freitass/todo.txt-vim'
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rking/ag.vim'
 
 call plug#end()
 "------- Packages to use ------"
@@ -47,15 +44,6 @@ set winaltkeys=no
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
-
-if has("mac")
-    set guifont=Monaco\ Mono\ 10
-elseif has("unix")
-    set guifont=Ubuntu\ Mono\ 10
-else
-    set guifont=Inconsolata:h11
-endif
-
 
 "---Remap key---"
 let mapleader = "\<space>"
@@ -141,17 +129,7 @@ nnoremap <C-b> :bprev<CR>
 
 "--- Gundo mappings ---"
 map <leader>fg :GundoToggle<CR>
-
-"---- fzf configs ---- "
-" Files, Buffers, BTags, Blines, Ag, Lines :Bcommits, Commits
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <leader>bf :Buffers<CR>
-nnoremap <silent> <C-t> :BTags<CR>
-nnoremap <silent> <leader>bl :BLines<CR>
-nnoremap <silent> <leader>pa :Ag<CR>
-nnoremap <silent> <leader>pl :Lines<CR>
-nnoremap <silent> <leader>bc :BCommits<CR>
-nnoremap <silent> <leader>pc :Commits<CR>
+let g:gundo_prefer_python3 = 1
 
 
 "---Store Backup files in a central place---"
@@ -187,6 +165,11 @@ let g:SuperTabDefaultCompletionType = "context"
 
 "--- NERDTree stuff
 nnoremap <leader>wf :NERDTreeToggle<CR>
+
+"---- CTRLP configuration
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlPMixed'
+nnoremap <C-r> :CtrlPBufTagAll<CR>
 
 
 " --- Making clipboards play nice
