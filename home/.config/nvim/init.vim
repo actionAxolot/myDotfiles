@@ -170,7 +170,7 @@ nnoremap <leader>wf :NERDTreeToggle<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMixed'
 nnoremap <C-r> :CtrlPBufTagAll<CR>
-
+tnoremap <Leader><ESC> <C-\><C-n>
 
 " --- Making clipboards play nice
 map <leader>fy "+y
