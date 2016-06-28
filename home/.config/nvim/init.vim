@@ -4,6 +4,9 @@ let base16colorspace=256
 "---fucking line endings
 set ffs=unix
 
+"--- FZF
+set rtp+=~/.fzf
+
 "--- Have fd escape insert mode ---"
 inoremap fd <Esc>
 
@@ -19,7 +22,6 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'bling/vim-airline'
 Plug 'xolox/vim-misc'
-Plug 'ajh17/Spacegray.vim'
 Plug 'ervandew/supertab'
 Plug 'sjl/gundo.vim'
 Plug 'mustache/vim-mustache-handlebars'
@@ -28,8 +30,10 @@ Plug 'mxw/vim-jsx'
 Plug 'elzr/vim-json'
 Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
+Plug 'nanotech/jellybeans.vim'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 "------- Packages to use ------"
@@ -61,7 +65,7 @@ set modelines=0
 set ttimeoutlen=100
 
 "---Set Color Scheme---"
-colorscheme spacegray
+colorscheme jellybeans
 
 "---Tabs configuration---"
 set tabstop=4
@@ -118,6 +122,12 @@ set completeopt=menuone,longest,preview,menu
 set winminheight=0
 nnoremap <leader>wv <C-w>v<C-w>l
 nnoremap <leader>ws <C-w>s<C-w>l
+
+map <leader>h :wincmd h<CR>
+map <leader>j :wincmd j<CR>
+map <leader>k :wincmd k<CR>
+map <leader>l :wincmd l<CR>
+
 nnoremap <C-a>h <C-w>h
 nnoremap <C-a>j <C-w>j
 nnoremap <C-a>k <C-w>k
@@ -166,11 +176,18 @@ let g:SuperTabDefaultCompletionType = "context"
 "--- NERDTree stuff
 nnoremap <leader>wf :NERDTreeToggle<CR>
 
-"---- CTRLP configuration
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMixed'
-nnoremap <C-r> :CtrlPBufTagAll<CR>
-tnoremap <Leader><ESC> <C-\><C-n>
+"--- FZF stuff
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader>bf :Buffers<CR>
+nnoremap <silent> <C-r> :BTags<CR>
+nnoremap <silent> <leader>bl :BLines<CR>
+nnoremap <silent> <leader>pa :Ag<CR>
+nnoremap <silent> <leader>pl :Lines<CR>
+nnoremap <silent> <leader>bc :BCommits<CR>
+nnoremap <silent> <leader>pc :Commits<CR>
+
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
 
 " --- Making clipboards play nice
 map <leader>fy "+y
