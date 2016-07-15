@@ -1,3 +1,5 @@
+autocmd FileType python setlocal omnifunc=jedi#completions
+
 let g:jedi#goto_command = "<leader>mg"
 let g:jedi#goto_assignments_command = "<leader>ma"
 let g:jedi#goto_definitions_command = "<leader>md"

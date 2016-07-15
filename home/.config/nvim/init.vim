@@ -34,6 +34,7 @@ Plug 'rking/ag.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-vinegar'
 
 call plug#end()
 "------- Packages to use ------"
