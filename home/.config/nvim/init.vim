@@ -4,9 +4,6 @@ let base16colorspace=256
 "---fucking line endings
 set ffs=unix
 
-"--- FZF
-set rtp+=~/.fzf
-
 "--- Have fd escape insert mode ---"
 inoremap fd <Esc>
 
@@ -32,9 +29,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-vinegar'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 "------- Packages to use ------"
@@ -134,10 +130,6 @@ nnoremap <C-a>j <C-w>j
 nnoremap <C-a>k <C-w>k
 nnoremap <C-a>l <C-w>l
 
-"--- buffer nav
-nnoremap <C-f> :bnext<CR>
-nnoremap <C-b> :bprev<CR>
-
 "--- Gundo mappings ---"
 map <leader>fg :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
@@ -177,19 +169,23 @@ let g:SuperTabDefaultCompletionType = "context"
 "--- NERDTree stuff
 nnoremap <leader>wf :NERDTreeToggle<CR>
 
+"--- ctrlp stuff
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'rac'
+
+
+if executable('ag')
+  " Use ag over grep
+  "set grepprg=ag\ --nogroup\ --nocolor
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --depth 8 -g ""'
+
+  " " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
 "--- FZF stuff
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <silent> <leader>bf :Buffers<CR>
-nnoremap <silent> <C-r> :BTags<CR>
-nnoremap <silent> <leader>bl :BLines<CR>
-nnoremap <silent> <leader>pa :Ag<CR>
-nnoremap <silent> <leader>pl :Lines<CR>
-nnoremap <silent> <leader>bc :BCommits<CR>
-nnoremap <silent> <leader>pc :Commits<CR>
-
-imap <C-x><C-f> <plug>(fzf-complete-file-ag)
-imap <C-x><C-l> <plug>(fzf-complete-line)
-
 " --- Making clipboards play nice
 map <leader>fy "+y
 map <leader>fp "+p
