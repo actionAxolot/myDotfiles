@@ -18,9 +18,3 @@ fi
 
 # set PATH so it includes user's private bin directories
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
-/usr/bin/setxkbmap -option "ctrl:nocaps"
-
-dropbox stop && dbus-launch dropbox start
-# Ubuntu make installation of Ubuntu Make binary symlink
-PATH=/home/actionaxolot/.local/share/umake/bin:$PATH
-

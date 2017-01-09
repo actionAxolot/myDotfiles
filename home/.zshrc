@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/actionaxolot/.oh-my-zsh
+export ZSH=/home/axolot/.oh-my-zsh
 
 export TERM=screen-256color
 
