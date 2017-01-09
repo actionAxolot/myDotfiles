@@ -1,7 +1,9 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/axolote/.oh-my-zsh
+export ZSH=/home/actionaxolot/.oh-my-zsh
 
 export TERM=screen-256color
+
+export EDITOR=vim
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -86,9 +88,8 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 source /usr/local/bin/virtualenvwrapper_lazy.sh
 
-export NVM_DIR="/home/axolote/.nvm"
+export NVM_DIR="/home/actionaxolot/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+

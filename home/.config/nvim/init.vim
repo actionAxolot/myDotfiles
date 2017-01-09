@@ -31,6 +31,7 @@ Plug 'rking/ag.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 "------- Packages to use ------"
@@ -176,14 +177,35 @@ let g:ctrlp_working_path_mode = 'rac'
 
 
 if executable('ag')
-  " Use ag over grep
-  "set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --depth 8 -g ""'
+    " Use ag over grep
+    "set grepprg=ag\ --nogroup\ --nocolor
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
 
-  " " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+    " " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
 endif
+
+"--- Syntastic stuff
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
 
 "--- FZF stuff
 " --- Making clipboards play nice
