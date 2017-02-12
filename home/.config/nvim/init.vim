@@ -10,28 +10,16 @@ inoremap fd <Esc>
 "------- Packages to use ------"
 call plug#begin('~/.vim/bundle')
 
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
-Plug 'tpope/vim-fugitive'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'bling/vim-airline'
 Plug 'xolox/vim-misc'
-Plug 'ervandew/supertab'
 Plug 'sjl/gundo.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'elzr/vim-json'
-Plug 'davidhalter/jedi-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'rking/ag.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 "------- Packages to use ------"
@@ -151,11 +139,6 @@ nmap <leader>vr :tabedit $MYVIMRC<CR>
 "--- Neovim terminal stuff ----"
 "tnoremap fd <C-\><C-n>
 
-" Ultisnips conf
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
 
 "--- Relative numbers settings
 set relativenumber
@@ -163,12 +146,6 @@ autocmd FocusLost * :set number
 autocmd FocusGained * :set relativenumber
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
-
-"--- Super tab conf
-let g:SuperTabDefaultCompletionType = "context"
-
-"--- NERDTree stuff
-nnoremap <leader>wf :NERDTreeToggle<CR>
 
 "--- ctrlp stuff
 let g:ctrlp_map = '<c-p>'
@@ -186,28 +163,6 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
-"--- Syntastic stuff
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
-
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-
-"--- FZF stuff
 " --- Making clipboards play nice
 map <leader>fy "+y
 map <leader>fp "+p
