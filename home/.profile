@@ -1,1 +1,0 @@
-/home/axolote/.homesick/repos/myDotfiles/home/.profile

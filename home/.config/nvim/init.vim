@@ -1,6 +1,7 @@
 "--- Turn off vi compatibility ---"
 let base16colorspace=256
 
+
 "---fucking line endings
 set ffs=unix
 
