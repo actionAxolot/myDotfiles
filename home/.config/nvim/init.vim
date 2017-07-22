@@ -1,9 +1,9 @@
 "--- Turn off vi compatibility ---"
 let base16colorspace=256
 
-
 "---fucking line endings
 set ffs=unix
+set rtp+=~/.fzf
 
 "--- Have fd escape insert mode ---"
 inoremap fd <Esc>
@@ -11,16 +11,25 @@ inoremap fd <Esc>
 "------- Packages to use ------"
 call plug#begin('~/.vim/bundle')
 
+Plug 'vim-scripts/delimitMate.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
-Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'xolox/vim-misc'
+Plug 'ajh17/Spacegray.vim'
 Plug 'sjl/gundo.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'neomake/neomake'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'tpope/vim-cucumber'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
+Plug 'majutsushi/tagbar'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'nanotech/jellybeans.vim'
-Plug 'tpope/vim-vinegar'
-Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 "------- Packages to use ------"
@@ -35,6 +44,15 @@ set winaltkeys=no
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
+
+if has("mac")
+    set guifont=Monaco\ Mono\ 10
+elseif has("unix")
+    set guifont=Source\ Code\ Pro\ 10
+else
+    set guifont=Inconsolata:h11
+endif
+
 
 "---Remap key---"
 let mapleader = "\<space>"
@@ -52,7 +70,7 @@ set modelines=0
 set ttimeoutlen=100
 
 "---Set Color Scheme---"
-colorscheme jellybeans
+colorscheme spacegray
 
 "---Tabs configuration---"
 set tabstop=4
@@ -103,27 +121,49 @@ set listchars=tab:▸\ ,eol:¬
 "---Match it configuration---"
 runtime macros/matchit.vim
 
+"---filetype identification---"
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
+
+"---Indentation according to filetype---"
+autocmd FileType ruby set tabstop=2|set shiftwidth=2|set noexpandtab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+
 set completeopt=menuone,longest,preview,menu
 
 "---Window operations---"
 set winminheight=0
 nnoremap <leader>wv <C-w>v<C-w>l
 nnoremap <leader>ws <C-w>s<C-w>l
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wl <C-w>l
 
-map <leader>h :wincmd h<CR>
-map <leader>j :wincmd j<CR>
-map <leader>k :wincmd k<CR>
-map <leader>l :wincmd l<CR>
-
-nnoremap <C-a>h <C-w>h
-nnoremap <C-a>j <C-w>j
-nnoremap <C-a>k <C-w>k
-nnoremap <C-a>l <C-w>l
+"--- buffer nav
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprev<CR>
 
 "--- Gundo mappings ---"
 map <leader>fg :GundoToggle<CR>
-let g:gundo_prefer_python3 = 1
 
+"---- fzf configs ---- "
+" Files, Buffers, BTags, Blines, Ag, Lines :Bcommits, Commits
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader>bf :Buffers<CR>
+nnoremap <silent> <leader>bt :BTags<CR>
+nnoremap <silent> <leader>bl :BLines<CR>
+nnoremap <silent> <leader>pa :Ag<CR>
+nnoremap <silent> <leader>pl :Lines<CR>
+nnoremap <silent> <leader>bc :BCommits<CR>
+nnoremap <silent> <leader>pc :Commits<CR>
+
+imap <C-x><C-f> <plug>(fzf-complete-file-ag)
+imap <C-x><C-l> <plug>(fzf-complete-line)
 
 "---Store Backup files in a central place---"
 set backup
@@ -140,30 +180,26 @@ nmap <leader>vr :tabedit $MYVIMRC<CR>
 "--- Neovim terminal stuff ----"
 "tnoremap fd <C-\><C-n>
 
-
-"--- Relative numbers settings
-set relativenumber
-autocmd FocusLost * :set number
-autocmd FocusGained * :set relativenumber
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
-
-"--- ctrlp stuff
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'rac'
-
-
-if executable('ag')
-    " Use ag over grep
-    "set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag -l --nocolor -g "" %s'
-
-    " " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-endif
+" Ultisnips conf
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " --- Making clipboards play nice
 map <leader>fy "+y
 map <leader>fp "+p
+
+"----- Linting
+autocmd! BufWritePost * Neomake
+
+"----- deplete conf
+let g:deoplete#enable_at_startup = 1
+
+"---- Jedi config
+let g:jedi#completions_enabled = 0
+
+"---- Tagbar confs
+nmap <leader><leader> :TagbarToggle<CR>
+
+"---- FZF
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
