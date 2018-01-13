@@ -3,7 +3,6 @@ let base16colorspace=256
 
 "---fucking line endings
 set ffs=unix
-set rtp+=~/.fzf
 
 "--- Have fd escape insert mode ---"
 inoremap fd <Esc>
@@ -21,6 +20,7 @@ Plug 'honza/vim-snippets'
 Plug 'xolox/vim-misc'
 Plug 'ajh17/Spacegray.vim'
 Plug 'sjl/gundo.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'neomake/neomake'
 Plug 'MattesGroeger/vim-bookmarks'
@@ -30,6 +30,7 @@ Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'tpope/vim-vinegar'
 
 call plug#end()
 "------- Packages to use ------"
@@ -202,4 +203,4 @@ let g:jedi#completions_enabled = 0
 nmap <leader><leader> :TagbarToggle<CR>
 
 "---- FZF
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag -S -g ""'
