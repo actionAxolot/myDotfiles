@@ -1,4 +1,5 @@
 autoload/*
-!autoload/.gitkeep
-bundle/*
-!bundle/.gitkeep
+#!autoload/.gitkeep
+home/.config/nvim/bundle/*
+home/.config/nvim/autoload/*
+#!bundle/.gitkeep

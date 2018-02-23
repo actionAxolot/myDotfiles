@@ -140,10 +140,19 @@ set completeopt=menuone,longest,preview,menu
 set winminheight=0
 nnoremap <leader>wv <C-w>v<C-w>l
 nnoremap <leader>ws <C-w>s<C-w>l
-nnoremap <leader>wh <C-w>h
-nnoremap <leader>wj <C-w>j
-nnoremap <leader>wk <C-w>k
-nnoremap <leader>wl <C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+"---- nvim terminal mode
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <A-h> <C-\><C-n><C-w>h
+    tnoremap <A-j> <C-\><C-n><C-w>j
+    tnoremap <A-k> <C-\><C-n><C-w>k
+    tnoremap <A-l> <C-\><C-n><C-w>l
+endif
 
 "--- buffer nav
 nnoremap <leader>bn :bnext<CR>
