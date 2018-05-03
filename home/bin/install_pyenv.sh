@@ -12,10 +12,10 @@ xz-utils tk-dev curl
 curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 
 # Add to bash file
-echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $HOME/.bash_profile
+echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $HOME/.bashrc
 
 echo 'eval "$(pyenv init -)"' >> $HOME/.bash_profile
-echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bash_profile
+echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bashrc
 
 pyenv update
 

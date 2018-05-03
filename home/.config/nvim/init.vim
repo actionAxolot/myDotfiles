@@ -1,6 +1,7 @@
 "--- Turn off vi compatibility ---"
 let base16colorspace=256
 
+
 "---fucking line endings
 set ffs=unix
 
@@ -22,10 +23,18 @@ Plug 'ajh17/Spacegray.vim'
 Plug 'sjl/gundo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-cucumber'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endi
+
 Plug 'zchee/deoplete-jedi'
 Plug 'davidhalter/jedi-vim'
 Plug 'majutsushi/tagbar'
@@ -54,6 +63,9 @@ else
     set guifont=Inconsolata:h11
 endif
 
+"--- deoplete stuf
+let g:python_host_prog = '/home/axolote/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/home/axolote/.pyenv/versions/neovim3/bin/python'
 
 "---Remap key---"
 let mapleader = "\<space>"
@@ -200,7 +212,7 @@ map <leader>fy "+y
 map <leader>fp "+p
 
 "----- Linting
-autocmd! BufWritePost * Neomake
+"---- autocmd! BufWritePost * Neomake
 
 "----- deplete conf
 let g:deoplete#enable_at_startup = 1
@@ -213,3 +225,4 @@ nmap <leader><leader> :TagbarToggle<CR>
 
 "---- FZF
 let $FZF_DEFAULT_COMMAND = 'ag -S -g ""'
+
