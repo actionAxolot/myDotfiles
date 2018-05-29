@@ -64,8 +64,8 @@ else
 endif
 
 "--- deoplete stuf
-let g:python_host_prog = '/home/axolote/.pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/home/axolote/.pyenv/versions/neovim3/bin/python'
+"let g:python_host_prog = '/home/axolote/.pyenv/versions/neovim2/bin/python'
+"let g:python3_host_prog = '/home/axolote/.pyenv/versions/neovim3/bin/python'
 
 "---Remap key---"
 let mapleader = "\<space>"
