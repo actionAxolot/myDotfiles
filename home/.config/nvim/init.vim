@@ -26,6 +26,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'tpope/vim-cucumber'
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
 
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
