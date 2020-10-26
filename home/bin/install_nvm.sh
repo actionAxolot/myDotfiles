@@ -4,6 +4,6 @@ if [[ ! -z "${NVM_DIR}" ]]; then
     exit 1
 fi
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh | bash
 
 echo "Please restart shell to make these changes stick"

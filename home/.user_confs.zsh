@@ -19,12 +19,18 @@ alias more=less
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# This is windows things
-if [ -z "$(pgrep ssh-agent)" ]; then
-        rm -rf /tmp/ssh-*
-        eval $(ssh-agent -s) > /dev/null
-      else
-        export SSH_AGENT_PID=$(pgrep ssh-agent)
-        export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.*)
+if [[ $(grep Microsoft /proc/version) ]]; then
+    # This is windows things
+    if [ -z "$(pgrep ssh-agent)" ]; then
+            rm -rf /tmp/ssh-*
+            eval $(ssh-agent -s) > /dev/null
+          else
+            export SSH_AGENT_PID=$(pgrep ssh-agent)
+            export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.*)
+    fi
 fi
 
+# Deno stuff.
+export DENO_INSTALL="/home/atemah4ck/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
