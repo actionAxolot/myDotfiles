@@ -13,6 +13,9 @@ alias df='df -h'                          # human-readable sizes
 alias free='free -m'                      # show sizes in MB
 alias np='nano -w PKGBUILD'
 alias more=less
+alias emacsc='emacs -nw'
+alias emacsw='emacs $@'
+
 
 # export VK_ICD_FILENAMES=/etc/vulkan/icd.d/nvidia_icd.json
 
@@ -34,3 +37,4 @@ fi
 export DENO_INSTALL="/home/atemah4ck/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.emacs.d/bin"
