@@ -5,6 +5,8 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 
+;; Testing a commit
+
 (setq inhibit-splash-screen t)
 (setq backup-inhibited t)
 (setq auto-save-default nil)

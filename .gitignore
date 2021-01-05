@@ -3,3 +3,6 @@ autoload/*
 home/.config/nvim/bundle/*
 home/.config/nvim/autoload/*
 #!bundle/.gitkeep
+home/.emacs.d/*
+!home/.emacs.d/early-init.el
+!home/.emacs.d/init.el
