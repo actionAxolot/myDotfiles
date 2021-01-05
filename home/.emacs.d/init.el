@@ -74,24 +74,11 @@
 (column-number-mode)
 (global-display-line-numbers-mode)
 
-;; Enable and bootstrap straight.el
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
 ;; Load the straight.el version of use-package
 (defvar straight-use-package-by-default)
 (straight-use-package 'use-package)
 ;; Tell straight to use use-package by default
+
 (setq straight-use-package-by-default t)
 
 ;; Tell straight to use ssh by default, instead of https.
@@ -105,6 +92,7 @@
   (set-terminal-coding-system 'utf-8)
   (set-keyboard-coding-system 'utf-8)
   (setq locale-coding-system 'utf-8))
+
 ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
 (when *sys/gui*
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
@@ -259,31 +247,6 @@
    uniquify-buffer-name-style 'post-forward
    uniquify-separator ":"))
 
-;; (use-package helm
-;;   :straight t
-;;   :bind
-;;   (("M-x" . helm-M-x)
-;;    ("C-c h" . helm-command-prefix)
-;;    ("C-c r b" . helm-filtered-bookmarks)
-;;    ("C-x C-f" . helm-find-files)
-;;    ("M-y" . helm-show-kill-ring)
-;;    ("C-x b" . helm-mini))
-;;   :config
-;;   (global-unset-key (kbd "C-x c"))
-;;   (setq helm-split-window-in-side-p t
-;;         helm-move-to-line-cycle-in-source t
-;;         helm-ff-search-library-in-sexp t
-;;         helm-scroll-amount 8
-;;         helm-ff-file-name-history-use-recentf t
-;;         helm-echo-input-in-header-line t
-;;         helm-autoresize-max-height 0
-;;         helm-autoresize-min-height 20
-;;         helm-M-x-fuzzy-match t
-;;         helm-buffers-fuzzy-matching t
-;;         helm-recentf-fuzzy-match t)
-;;   (helm-mode 1)
-;;   (helm-autoresize-mode 1))
-
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper))
@@ -329,21 +292,6 @@
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
-
-(use-package projectile
-  :straight t
-  :diminish projectile-mode
-  :config (projectile-mode)
-  :custom ((projectile-completion-system 'ivy))
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
-  :init
-  (when (file-directory-p "~/Projects")
-    (setq projectile-project-search-path '("~/Projects")))
-  (setq projectile-switch-project-action #'projectile-dired))
-
-(use-package counsel-projectile
-  :config (counsel-projectile-mode))
 
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
@@ -400,79 +348,6 @@
   (setq-default nyan-animate-nyancat t
                 nyan-wavy-trail t)
   :after (spaceline))
-
-(use-package emmet-mode
-  :straight t
-  :hook
-  (sgml-mode-hook . emmet-mode)
-  (css-mode-hook . emmet-mode)
-  :bind
-  (("C-c C-e" . emmet-expand-line))
-  :config
-  (setq emmet-move-cursor-between-quotes t)
-  (setq emmet-expand-jsx-className? t))
-
-(use-package flycheck
-  :straight t
-  :init
-  (global-flycheck-mode))
-
-(use-package lsp-ui)
-(use-package lsp-ivy)
-
-(use-package lsp-mode
-  :commands (lsp lsp-deferred)
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :config
-  (lsp-enable-which-key-integration t)
-  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
-
-(use-package typescript-mode
-  :straight t
-  :mode "\\/ts\\'"
-  :hook (typescript-mode . lsp-deferred)
-  :config
-  (setq typescript-indent-level 2))
-
-(use-package python-mode
-  :straight nil
-  :hook (python-mode . lsp-deferred))
-
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
-;; if you are ivy user
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-;; optionally if you want to use debugger
-(use-package dap-mode)
-
-(use-package pyvenv)
-
-(setq js-indent-level 2)
-
-;; (use-package js2-mode
-;;   :mode "\\.js\\'"
-;;   :config
-;;   (setq-default js2-ignored-warnings '("msg.extra.trailing.comma")))
-
-;; (use-package js2-refactor
-;;   :config
-;;   (js2r-add-keybindings-with-prefix "C-c C-m")
-;;   (add-hook 'js2-mode-hook 'js2-refactor-mode))
-
-;; (use-package rjsx-mode)
-
-;; (use-package prettier-js
-;;   :config
-;;   (setq prettier-js-args '(
-;;                         "--trailing-comma" "es5"
-;;                         "--single-quote" "true"
-;;                         "--print-width" "100"
-;;                           ))
-;;   (add-hook 'js2-mode-hook 'prettier-js-mode)
-;;   (add-hook 'rjsx-mode-hook 'prettier-js-mode))
 
 ;; Keybindings that need all packages already initialized
 (global-set-key (kbd "C-;") 'comment-or-uncomment-region)
